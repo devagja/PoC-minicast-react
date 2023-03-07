@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "commitlint":"commitlint --edit --config=commitlint.config.cjs",
+    "commitlint": "commitlint --edit --config=commitlint.config.cjs",
     "commit": "cz",
+    "lint": "ts-standard --fix",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
@@ -24,7 +25,11 @@
     "commitizen": "4.3.0",
     "husky": "8.0.3",
     "inquirer": "9.1.4",
+    "ts-standard": "12.0.2",
     "typescript": "4.9.3",
     "vite": "4.1.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/ts-standard/eslintrc.json"
   }
 }
