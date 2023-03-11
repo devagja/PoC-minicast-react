@@ -6,7 +6,7 @@ interface BadgeProps {
   [x: string]: any
 }
 
-function Badge ({
+function Badge({
   children,
   className = '',
   ...props

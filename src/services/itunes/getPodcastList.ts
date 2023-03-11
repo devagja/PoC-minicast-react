@@ -3,7 +3,7 @@ import axios from 'axios'
 import { type Entry, type PodcastList } from '~/interfaces/PodcastList'
 import keysToCamel from '~/utils/format/keysToCamel'
 
-export default async function getPodcastList (): Promise<Entry[]> {
+export default async function getPodcastList(): Promise<Entry[]> {
   const res = (
     await axios.get<PodcastList>(
       `${
@@ -12,6 +12,5 @@ export default async function getPodcastList (): Promise<Entry[]> {
     )
   ).data
 
-  // @ts-expect-error
   return keysToCamel(res.feed.entry)
 }

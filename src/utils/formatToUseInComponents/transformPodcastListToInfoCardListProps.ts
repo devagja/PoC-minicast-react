@@ -9,7 +9,7 @@ export interface InfoCardListDataProperties {
   author: string
 }
 
-function transformPodcastListToInfoCardListProps (
+function transformPodcastListToInfoCardListProps(
   podcastList: Entry[]
 ): InfoCardListDataProperties[] {
   return podcastList.map(({ id, title, imArtist, imImage, imName }) => ({

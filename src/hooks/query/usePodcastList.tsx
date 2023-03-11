@@ -4,7 +4,7 @@ import {
   type UseQueryResult
 } from 'react-query'
 
-import { type Entry } from '~/interfaces/PodcastList'
+import type { Entry } from '~/interfaces/PodcastList'
 import getPodcastList from '~/services/itunes/getPodcastList'
 
 export const podcastListQuery: UseQueryOptions<Entry[], Error> = {

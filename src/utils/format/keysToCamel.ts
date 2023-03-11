@@ -7,7 +7,7 @@ interface keysToCamelParams {
   [x: string]: any
 }
 
-function keysToCamel (o: keysToCamelParams): any {
+function keysToCamel(o: keysToCamelParams): any {
   if (isObject(o)) {
     if (o instanceof Date) {
       return o

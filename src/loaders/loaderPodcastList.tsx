@@ -1,4 +1,4 @@
-import { type QueryClient } from 'react-query'
+import type { QueryClient } from 'react-query'
 
 import { podcastListQuery } from '~/hooks/query/usePodcastList'
 
