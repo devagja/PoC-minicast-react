@@ -1,13 +1,13 @@
-import isArray from './isArray'
-import isObject from './isObject'
 import toCamel from './toCamel'
+import isArray from '../checkTypes/isArray'
+import isObject from '../checkTypes/isObject'
 
 // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
 interface keysToCamelParams {
   [x: string]: any
 }
 
-function keysToCamel(o: keysToCamelParams): keysToCamelParams {
+function keysToCamel (o: keysToCamelParams): any {
   if (isObject(o)) {
     if (o instanceof Date) {
       return o
