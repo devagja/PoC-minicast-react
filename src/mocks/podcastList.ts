@@ -1,7 +1,6 @@
-import { type Entry, type PodcastList } from '~/interfaces/PodcastList'
 import keysToCamel from '~/utils/format/keysToCamel'
 
-const podcastList: PodcastList = {
+const podcastList = {
   feed: {
     author: {
       name: { label: 'iTunes Store' },
@@ -5913,5 +5912,5 @@ const podcastList: PodcastList = {
   }
 }
 
-export const formattedPodcastList: Entry[] = keysToCamel(podcastList.feed.entry)
+export const formattedPodcastList = keysToCamel(podcastList.feed.entry)
 export default podcastList
