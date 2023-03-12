@@ -5,12 +5,12 @@ import InfoCard from '~/components/ui/molecules/InfoCard'
 import type { InfoCardListDataProperties } from '~/utils/formatToUseInComponents/transformPodcastListToInfoCardListProps'
 
 interface InfoCardListProps {
-  data: InfoCardListDataProperties[]
+  data: InfoCardListDataProperties[] | []
 }
 
 function InfoCardList({ data }: InfoCardListProps): ReactElement {
   return (
-    <div className='flex flex-wrap justify-center gap-x-3 gap-y-28 mx-auto container px-2'>
+    <div className='flex flex-wrap justify-center gap-x-3 gap-y-28 mx-auto px-2'>
       {data.map(({ id, image, title, author }: InfoCardListDataProperties) => (
         <Link to={`podcast/${id}`} key={id}>
           <InfoCard image={image} author={author} title={title} />
