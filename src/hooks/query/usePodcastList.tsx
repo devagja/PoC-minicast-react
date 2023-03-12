@@ -2,18 +2,21 @@ import {
   useQuery,
   type UseQueryOptions,
   type UseQueryResult
-} from 'react-query'
+} from '@tanstack/react-query'
 
-import type { Entry } from '~/interfaces/PodcastList'
-import getPodcastList from '~/services/itunes/getPodcastList'
+import { getTrimmedPodcastList } from '~/services/itunes/getPodcastList'
+import { type InfoCardListDataProperties } from '~/utils/formatToUseInComponents/transformPodcastListToInfoCardListProps'
 
-export const podcastListQuery: UseQueryOptions<Entry[], Error> = {
-  queryKey: 'podcastList',
-  queryFn: getPodcastList
+export const podcastListQuery: UseQueryOptions<
+  InfoCardListDataProperties[],
+  Error
+> = {
+  queryKey: ['podcastList'],
+  queryFn: getTrimmedPodcastList
 }
 
-function usePodcastList(): UseQueryResult<Entry[], Error> {
-  const query = useQuery<Entry[], Error>(podcastListQuery)
+function usePodcastList(): UseQueryResult<InfoCardListDataProperties[], Error> {
+  const query = useQuery<InfoCardListDataProperties[], Error>(podcastListQuery)
   return query
 }
 
