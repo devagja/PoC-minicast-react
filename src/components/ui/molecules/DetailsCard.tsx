@@ -7,29 +7,29 @@ interface InfoCardProps {
   description?: string
 }
 
-function DetailsCard ({
+function DetailsCard({
   image = {},
   title = '',
   author = '',
   description = ''
 }: InfoCardProps): ReactElement {
   return (
-    <div className='w-full  md:max-w-[288px] flex flex-col px-3 pt-5 h-fit md:sticky top-8 bg-base-100 drop-shadow-lg border border-base-200 gap-11 pb-16'>
+    <div className='top-8  flex h-fit w-full flex-col gap-11 border border-base-200 bg-base-100 px-3 pt-5 pb-16 drop-shadow-lg md:sticky md:max-w-[288px]'>
       <div className='avatar'>
-        <div className='w-44 mx-auto rounded'>
+        <div className='mx-auto w-44 rounded'>
           <img {...image} />
         </div>
       </div>
-      <div className='flex flex-col px-2 gap-1'>
+      <div className='flex flex-col gap-1 px-2'>
         <span className='font-bold'>{title}</span>
-        <span className='italic text-sm'>by {author}</span>
+        <span className='text-sm italic'>by {author}</span>
       </div>
       <div className='flex flex-col gap-1'>
-        <span className='font-bold text-sm'>Description</span>
+        <span className='text-sm font-bold'>Description</span>
         {description !== '' ? (
-          <span className='italic text-sm transition-all'>{description}</span>
+          <span className='text-sm italic transition-all'>{description}</span>
         ) : (
-          <span className='btn  btn-ghost loading btn-lg transition-all'></span>
+          <span className='loading btn-ghost btn-lg btn transition-all'></span>
         )}
       </div>
     </div>

@@ -8,7 +8,7 @@ interface InfoTableProps {
 function InfoTable({ headers, children }: InfoTableProps): ReactElement {
   return (
     <div className='overflow-x-auto'>
-      <table className='table table-zebra w-full'>
+      <table className='table-zebra table w-full'>
         <thead>
           <tr>
             {headers.map(head => (

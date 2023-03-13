@@ -17,16 +17,16 @@ const SearchInput = forwardRef(function SearchInput(
   ref: ForwardedRef<HTMLInputElement>
 ): ReactElement {
   return (
-    <div className='max-w-[291px] w-full h-10 relative'>
+    <div className='relative h-10 w-full max-w-[291px]'>
       <input
         {...props}
         ref={ref}
         type='text'
-        className='input input-bordered rounded-md input-primary w-full py-0 px-3 h-full'
+        className='input-bordered input-primary input h-full w-full rounded-md py-0 px-3'
       />
       <button
         onClick={onReset}
-        className='rounded-md flex justify-center items-center min-h-0 h-5 w-5 p-0 right-0 top-2/4 -translate-y-2/4 -translate-x-2/4 btn-ghost btn-primary absolute'
+        className='btn-primary btn-ghost absolute right-0 top-2/4 flex h-5 min-h-0 w-5 -translate-y-2/4 -translate-x-2/4 items-center justify-center rounded-md p-0'
       >
         <svg
           className='h-4 w-4'

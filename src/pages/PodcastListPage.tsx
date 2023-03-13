@@ -10,7 +10,7 @@ import usePodcastList from '~/hooks/query/usePodcastList'
 import { filteredPodcastListAtom } from '~/state'
 import getListFilteredByValue from '~/utils/formatToUseInComponents/getListFilteredByValue'
 
-function PodcastListPage (): ReactElement {
+function PodcastListPage(): ReactElement {
   const { data: podcastList } = usePodcastList()
 
   const [filteredPodcastList, setFilteredPodcastList] = useAtom(
@@ -87,7 +87,7 @@ function PodcastListPage (): ReactElement {
   )
 
   return (
-    <ContainerTransition className='container w-full flex flex-col mx-auto pb-7'>
+    <ContainerTransition className='container mx-auto flex w-full flex-col pb-7'>
       {PodcastListHeaderPageMemo}
       {InfoCardListMemo}
       {EmptyHeroMemo}
