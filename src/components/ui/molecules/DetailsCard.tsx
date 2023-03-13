@@ -25,10 +25,10 @@ function DetailsCard({
         <span className='text-sm italic'>by {author}</span>
       </div>
       <div className='flex flex-col gap-1'>
-        <span className='font-bold text-sm'>Description</span>
+        <span className='text-sm font-bold'>Description</span>
         {descriptionInnerHTML !== '' ? (
           <span
-            className='italic text-sm transition-all'
+            className='text-sm italic transition-all'
             dangerouslySetInnerHTML={{ __html: descriptionInnerHTML }}
           />
         ) : (
