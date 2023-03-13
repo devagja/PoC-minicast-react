@@ -23,7 +23,13 @@ function PodcastEpisodePage(): ReactElement {
   const [episode, setEpisode] = useState<Item>()
 
   useEffect(() => {
-    setEpisode(podcastInfo?.item.find(i => i.guid.text === params.episodeId))
+    setEpisode(
+      podcastInfo?.item.find(
+        i =>
+          (typeof i.guid === 'object' ? i.guid.text : i.guid) ===
+          params.episodeId
+      )
+    )
   }, [podcastInfo?.item])
 
   return (
@@ -32,13 +38,13 @@ function PodcastEpisodePage(): ReactElement {
         image={{ src: podcast?.artworkUrl600, alt: podcast?.collectionName }}
         title={podcast?.collectionName}
         author={podcast?.artistName}
-        description={podcastInfo?.itunesSummary}
+        descriptionInnerHTML={podcastInfo?.description}
       />
       <div className='w-full  bg-base-100 drop-shadow-lg flex flex-col gap-5 border border-base-200 p-5'>
         <span className=' text-xl font-bold'>{episode?.title}</span>
         <div
           className='flex flex-col gap-2'
-          dangerouslySetInnerHTML={{ __html: episode?.contentEncoded ?? '' }}
+          dangerouslySetInnerHTML={{ __html: episode?.description ?? '' }}
         ></div>
 
         <audio

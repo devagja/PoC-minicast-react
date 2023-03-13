@@ -52,7 +52,7 @@ export interface MediaRestriction {
 export interface Item {
   title: string
   pubDate: string
-  guid: Guid
+  guid: Guid | string
   link: string
   itunesImage: ItunesImage2
   description: string
