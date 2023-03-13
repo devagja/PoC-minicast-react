@@ -10,7 +10,7 @@ import usePodcastList from '~/hooks/query/usePodcastList'
 import { filteredPodcastListAtom } from '~/state'
 import getListFilteredByValue from '~/utils/formatToUseInComponents/getListFilteredByValue'
 
-function PodcastListPage (): ReactElement {
+function PodcastListPage(): ReactElement {
   const { data: podcastList } = usePodcastList()
 
   const [filteredPodcastList, setFilteredPodcastList] = useAtom(
