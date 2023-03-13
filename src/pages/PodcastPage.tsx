@@ -2,6 +2,7 @@ import dayjs from 'dayjs'
 import { type ReactElement } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import ContainerTransition from '~/components/routing/atoms/ContainerTransition'
 import DetailsCard from '~/components/ui/molecules/DetailsCard'
 import InfoTable from '~/components/ui/molecules/InfoTable'
 import usePodcast from '~/hooks/query/usePodcast'
@@ -27,7 +28,7 @@ function PodcastPage(): ReactElement {
   }
 
   return (
-    <div className='container w-full flex flex-col items-center md:items-start md:flex-row gap-3 lg:gap-24 mx-auto pt-8 pb-9 px-4'>
+    <ContainerTransition className='container w-full flex flex-col items-center md:items-start md:flex-row gap-3 lg:gap-24 mx-auto pt-8 pb-9 px-4'>
       <DetailsCard
         image={{ src: podcast?.artworkUrl600, alt: podcast?.collectionName }}
         title={podcast?.collectionName}
@@ -61,7 +62,7 @@ function PodcastPage(): ReactElement {
           </InfoTable>
         </div>
       </div>
-    </div>
+    </ContainerTransition>
   )
 }
 
