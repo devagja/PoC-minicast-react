@@ -43,6 +43,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     'prefer-spread': 'off',
     'no-case-declarations': 'off',
+    'multiline-ternary': 'off',
     'no-console': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/consistent-type-imports': 'warn',
