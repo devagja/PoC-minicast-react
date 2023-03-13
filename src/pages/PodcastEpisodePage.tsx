@@ -33,14 +33,14 @@ function PodcastEpisodePage(): ReactElement {
   }, [podcastInfo?.item])
 
   return (
-    <ContainerTransition className='container w-full flex flex-col items-center md:items-start md:flex-row gap-3 lg:gap-24 mx-auto pt-8 pb-9 px-4'>
+    <ContainerTransition className='container mx-auto flex w-full flex-col items-center gap-3 px-4 pt-8 pb-9 md:flex-row md:items-start lg:gap-24'>
       <DetailsCard
         image={{ src: podcast?.artworkUrl600, alt: podcast?.collectionName }}
         title={podcast?.collectionName}
         author={podcast?.artistName}
         descriptionInnerHTML={podcastInfo?.description}
       />
-      <div className='w-full  bg-base-100 drop-shadow-lg flex flex-col gap-5 border border-base-200 p-5'>
+      <div className='flex w-full flex-col gap-5 border border-base-200 bg-base-100 p-5 drop-shadow-lg'>
         <span className=' text-xl font-bold'>{episode?.title}</span>
         <div
           className='flex flex-col gap-2'

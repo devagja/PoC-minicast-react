@@ -4,7 +4,7 @@ interface PodcastEpisodesCountProps {
   count: number
 }
 
-function PodcastEpisodesCount ({
+function PodcastEpisodesCount({
   count
 }: PodcastEpisodesCountProps): ReactElement {
   return (

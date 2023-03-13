@@ -15,7 +15,7 @@ function PodcastListHeaderPage({
   input
 }: PodcastListHeaderProps): ReactElement {
   return (
-    <div className='w-full flex justify-center sticky top-0 pt-7 pb-8 backdrop-blur-md px-2 z-20 md:justify-end gap-4 items-center md:px-20'>
+    <div className='sticky top-0 z-20 flex w-full items-center justify-center gap-4 px-2 pt-7 pb-8 backdrop-blur-md md:justify-end md:px-20'>
       <Badge>{count}</Badge>
       <SearchInput {...input} />
     </div>

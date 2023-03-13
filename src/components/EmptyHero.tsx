@@ -18,7 +18,7 @@ function EmptyHero({
   const { label, ...buttonAttr } = button
   const ButtonMemo = useMemo(
     () => (
-      <button {...buttonAttr} className='btn btn-primary'>
+      <button {...buttonAttr} className='btn-primary btn'>
         {label}
       </button>
     ),

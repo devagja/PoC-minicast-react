@@ -10,7 +10,7 @@ interface InfoCardListProps {
 
 function InfoCardList({ data }: InfoCardListProps): ReactElement {
   return (
-    <div className='flex flex-wrap justify-center gap-x-3 gap-y-28 mx-auto px-2'>
+    <div className='mx-auto flex flex-wrap justify-center gap-x-3 gap-y-28 px-2'>
       {data.map(({ id, image, title, author }: InfoCardListDataProperties) => (
         <Link to={`podcast/${id}`} key={id}>
           <InfoCard image={image} author={author} title={title} />

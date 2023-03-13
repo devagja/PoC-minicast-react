@@ -11,7 +11,7 @@ import usePodcastInfo from '~/hooks/query/usePodcastInfo'
 
 const intl = new Intl.DateTimeFormat('en-US')
 
-function PodcastPage (): ReactElement {
+function PodcastPage(): ReactElement {
   const nav = useNavigate()
   const params = useParams<{
     podcastId: string | undefined
@@ -51,14 +51,14 @@ function PodcastPage (): ReactElement {
     () =>
       ['0', '1', '2', '3', '4', '5'].map(key => (
         <tr key={key}>
-          <td className='max-w-[15rem] w-full overflow-x-hidden text-ellipsis lg:max-w-xs text-center'>
-            <span className='btn btn-ghost loading btn-sm transition-all  '></span>
+          <td className='w-full max-w-[15rem] overflow-x-hidden text-ellipsis text-center lg:max-w-xs'>
+            <span className='loading btn-ghost btn-sm btn transition-all'></span>
           </td>
           <td className='text-center '>
-            <span className='btn btn-ghost loading btn-sm transition-all  '></span>
+            <span className='loading btn-ghost btn-sm btn transition-all'></span>
           </td>
           <td className='text-center '>
-            <span className='btn btn-ghost loading btn-sm  transition-all  '></span>
+            <span className='loading btn-ghost btn-sm btn  transition-all'></span>
           </td>
         </tr>
       )),
