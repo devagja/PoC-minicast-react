@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactElement } from 'react'
 import { useParams } from 'react-router-dom'
 
+import ContainerTransition from '~/components/routing/atoms/ContainerTransition'
 import DetailsCard from '~/components/ui/molecules/DetailsCard'
 import usePodcast from '~/hooks/query/usePodcast'
 import usePodcastInfo from '~/hooks/query/usePodcastInfo'
@@ -26,7 +27,7 @@ function PodcastEpisodePage(): ReactElement {
   }, [podcastInfo?.item])
 
   return (
-    <div className='container w-full flex flex-col items-center md:items-start md:flex-row gap-3 lg:gap-24 mx-auto pt-8 pb-9 px-4'>
+    <ContainerTransition className='container w-full flex flex-col items-center md:items-start md:flex-row gap-3 lg:gap-24 mx-auto pt-8 pb-9 px-4'>
       <DetailsCard
         image={{ src: podcast?.artworkUrl600, alt: podcast?.collectionName }}
         title={podcast?.collectionName}
@@ -46,7 +47,7 @@ function PodcastEpisodePage(): ReactElement {
           controls
         ></audio>
       </div>
-    </div>
+    </ContainerTransition>
   )
 }
 
