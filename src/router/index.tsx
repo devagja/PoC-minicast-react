@@ -18,6 +18,10 @@ const LoadablePodcastPage = loadable(
   async () => await import('~/pages/PodcastPage')
 )
 
+const LoadablePodcastEpisodePage = loadable(
+  async () => await import('~/pages/PodcastEpisodePage')
+)
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -33,6 +37,11 @@ const router = createBrowserRouter([
       {
         path: 'podcast/:podcastId',
         element: <LoadablePodcastPage />,
+        loader: loaderPodcast(queryClient)
+      },
+      {
+        path: 'podcast/:podcastId/episode/:episodeId',
+        element: <LoadablePodcastEpisodePage />,
         loader: loaderPodcast(queryClient)
       }
     ]
