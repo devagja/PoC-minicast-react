@@ -1,4 +1,4 @@
-import { type ReactElement } from 'react'
+import { memo, type ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 
 function Topbar(): ReactElement {
@@ -10,10 +10,10 @@ function Topbar(): ReactElement {
         </Link>
       </div>
       <div className='flex-none'>
-        <button className='btn btn-square btn-ghost'>boton </button>
+        <span className='btn btn-square  btn-ghost loading'></span>
       </div>
     </div>
   )
 }
 
-export default Topbar
+export default memo(Topbar)
