@@ -10,7 +10,7 @@ interface PodcastListHeaderProps {
   input?: SearchInputProps
 }
 
-function PodcastListHeaderPage ({
+function PodcastListHeaderPage({
   count,
   input
 }: PodcastListHeaderProps): ReactElement {
