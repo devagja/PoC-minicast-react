@@ -1,8 +1,8 @@
+import loadable from '@loadable/component'
 import { atom, useAtom } from 'jotai'
-import { memo, useEffect, useMemo, type ReactElement } from 'react'
+import { memo, useEffect, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 
-import EmptyHero from '~/components/EmptyHero'
 import ContainerTransition from '~/components/routing/atoms/ContainerTransition'
 import DetailsCard from '~/components/ui/molecules/DetailsCard'
 import usePodcast from '~/hooks/query/usePodcast'
@@ -12,16 +12,16 @@ import type { Item } from '~/interfaces/PodcastInfo'
 export const episodeSelectedAtom = atom<Item | null>(null)
 export const episodeNotFoundAtom = atom<boolean>(false)
 
-function PodcastEpisodePage(): ReactElement {
-  const params = useParams<{
+function PodcastEpisodePage(): React.ReactElement {
+  const { podcastId = '', episodeId = '' } = useParams<{
     podcastId: string | undefined
     episodeId: string | undefined
   }>()
 
-  const { data: podcast } = usePodcast(params.podcastId ?? '')
+  const { data: podcast } = usePodcast(podcastId)
 
   const { data: podcastInfo } = usePodcastInfo(
-    params.podcastId ?? '',
+    podcastId,
     podcast?.feedUrl ?? ''
   )
 
@@ -30,8 +30,7 @@ function PodcastEpisodePage(): ReactElement {
 
   useEffect(() => {
     const selected = podcastInfo?.item.find(
-      i =>
-        (typeof i.guid === 'object' ? i.guid.text : i.guid) === params.episodeId
+      i => (typeof i.guid === 'object' ? i.guid.text : i.guid) === episodeId
     )
     if (selected != null) {
       setEpisode(selected)
@@ -39,60 +38,64 @@ function PodcastEpisodePage(): ReactElement {
     } else {
       setEpisodeNotFoundAtom(true)
     }
-  }, [podcastInfo])
+  }, [podcastInfo, episodeId])
 
   const DetailsCardMemo = useMemo(
     () => (
       <DetailsCard
-        image={{
-          src: podcast?.artworkUrl600,
-          alt: podcast?.collectionName
-        }}
-        link={{ to: `/podcast/${params.podcastId ?? ''}` }}
-        title={podcast?.collectionName}
-        author={podcast?.artistName}
+        {...(podcast != null && {
+          image: {
+            src: podcast.artworkUrl600,
+            alt: podcast.collectionName
+          },
+          title: podcast.collectionName,
+          author: podcast.artistName
+        })}
+        link={{ to: `/podcast/${podcastId}` }}
         descriptionInnerHTML={podcastInfo?.description}
       />
     ),
     [podcast, podcastInfo]
   )
 
+  const ContentLoadingMemo = useMemo(() => {
+    return <span className='loading btn-ghost btn-lg btn transition-all'></span>
+  }, [])
+
   const ContentMemo = useMemo(() => {
     return episode != null ? (
       <>
         <span className='overflow-hidden text-ellipsis text-xl font-bold'>
-          {episode?.title}
+          {episode.title}
         </span>
         <div
           className='flex flex-col gap-2 [&>*]:overflow-hidden [&>*]:text-ellipsis'
-          dangerouslySetInnerHTML={{ __html: episode?.description ?? '' }}
+          dangerouslySetInnerHTML={{ __html: episode.description }}
         ></div>
-        <audio
-          className='w-full'
-          src={episode?.enclosure?.url}
-          controls
-        ></audio>
+        <audio className='w-full' src={episode.enclosure.url} controls></audio>
       </>
     ) : (
-      <span className='loading btn-ghost btn-lg btn transition-all'></span>
+      ContentLoadingMemo
     )
-  }, [episode])
+  }, [episode, ContentLoadingMemo])
 
-  const EmptyHeroMemo = useMemo(
-    () => (
-      <EmptyHero
+  const EmptyHeroMemo = useMemo(() => {
+    const LoadableEmptyHero = loadable(
+      async () => await import('~/components/EmptyHero')
+    )
+    return (
+      <LoadableEmptyHero
         title='Episode not found'
         description='We are sorry but your episode is not available'
         button={{
           label: 'Back to Podcast'
         }}
         link={{
-          to: `/podcast/${params.podcastId ?? ''}`
+          to: `/podcast/${podcastId}`
         }}
       />
-    ),
-    []
-  )
+    )
+  }, [])
 
   const ContentFoundRenderMemo = useMemo(
     () => (episodeNotFound ? EmptyHeroMemo : ContentMemo),
