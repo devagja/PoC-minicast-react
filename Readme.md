@@ -2,9 +2,11 @@
 
 **PoC React 18, Vite 4, SWC**
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[
+<img src="https://jose-aguilar.vercel.app/assets/images/perezozo.webp"  width="180">
+](https://jose-aguilar.vercel.app)
 
 ## Resumen
 
