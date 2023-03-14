@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { type ReactElement, useEffect, useMemo, useCallback } from 'react'
+import { type ReactElement, useEffect, useMemo, useCallback, memo } from 'react'
 import { useForm } from 'react-hook-form'
 
 import EmptyHero from '~/components/EmptyHero'
@@ -95,4 +95,4 @@ function PodcastListPage(): ReactElement {
   )
 }
 
-export default PodcastListPage
+export default memo(PodcastListPage)
