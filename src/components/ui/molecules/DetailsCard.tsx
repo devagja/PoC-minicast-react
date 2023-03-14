@@ -19,7 +19,14 @@ function DetailsCard({
   const LinkWrap = useMemo(
     () =>
       link != null
-        ? { c: Link, p: { ...link, className: 'cursor-pointer' } }
+        ? {
+            c: Link,
+            p: {
+              ...link,
+              className:
+                'cursor-pointer before:content-["Back_to_Podcast"] before:transition-all  relative before:absolute before:top-0 before:opacity-0 before:left-0 before:w-full before:h-full before:bg-primary  hover:before:opacity-80 before:text-base-100 before:flex before:justify-center before:items-center'
+            }
+          }
         : { c: Fragment, p: null },
     [link]
   )
