@@ -60,9 +60,11 @@ function PodcastEpisodePage(): ReactElement {
   const ContentMemo = useMemo(() => {
     return episode != null ? (
       <>
-        <span className=' text-xl font-bold'>{episode?.title}</span>
+        <span className='overflow-hidden text-ellipsis text-xl font-bold'>
+          {episode?.title}
+        </span>
         <div
-          className='flex flex-col gap-2'
+          className='flex flex-col gap-2 [&>*]:overflow-hidden [&>*]:text-ellipsis'
           dangerouslySetInnerHTML={{ __html: episode?.description ?? '' }}
         ></div>
         <audio
