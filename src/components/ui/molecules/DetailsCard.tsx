@@ -61,7 +61,7 @@ function DetailsCard({
   )
 
   return (
-    <div className='top-8 flex h-fit w-full flex-col gap-11 border border-base-200 bg-base-100 px-3 pt-5 pb-16 drop-shadow-lg md:sticky md:max-w-[288px]'>
+    <div className='top-24 flex h-fit w-full flex-col gap-11 border border-base-200 bg-base-100 px-3 pt-5 pb-16 drop-shadow-lg md:sticky md:max-w-[288px]'>
       <div className='avatar'>
         <div className='mx-auto w-44 rounded'>
           {/* @ts-expect-error */}
