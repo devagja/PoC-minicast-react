@@ -1,7 +1,7 @@
-import type { ReactElement, ReactNode } from 'react'
+import { memo, useMemo } from 'react'
 
 interface BadgeProps {
-  children: ReactNode
+  children: React.ReactNode
   className?: string
   [x: string]: any
 }
@@ -10,16 +10,21 @@ function Badge({
   children,
   className = '',
   ...props
-}: BadgeProps): ReactElement {
-  const classes = [
-    className,
-    'badge badge-lg badge-primary rounded-lg text-xl px-2 py-1 font-bold'
-  ].join(' ')
+}: BadgeProps): React.ReactElement {
+  const classesMemo = useMemo(
+    () =>
+      [
+        className,
+        'badge badge-lg badge-primary rounded-lg text-xl px-2 py-1 font-bold'
+      ].join(' '),
+    [className]
+  )
+
   return (
-    <div {...props} className={classes}>
+    <div {...props} className={classesMemo}>
       {children}
     </div>
   )
 }
 
-export default Badge
+export default memo(Badge)

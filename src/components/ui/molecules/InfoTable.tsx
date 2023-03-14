@@ -1,25 +1,30 @@
-import type { ReactNode, ReactElement } from 'react'
+import { memo, useMemo } from 'react'
 
 interface InfoTableProps {
   headers: string[]
-  children: ReactNode
+  children: React.ReactNode
 }
 
-function InfoTable({ headers, children }: InfoTableProps): ReactElement {
+function InfoTable({ headers, children }: InfoTableProps): React.ReactElement {
+  const HeadersMemo = useMemo(
+    () => (
+      <tr>
+        {headers.map(head => (
+          <th key={head}>{head}</th>
+        ))}
+      </tr>
+    ),
+    [headers]
+  )
+
   return (
     <div className='overflow-x-auto'>
       <table className='table-zebra table w-full'>
-        <thead>
-          <tr>
-            {headers.map(head => (
-              <th key={head}>{head}</th>
-            ))}
-          </tr>
-        </thead>
+        <thead>{HeadersMemo}</thead>
         {children}
       </table>
     </div>
   )
 }
 
-export default InfoTable
+export default memo(InfoTable)
