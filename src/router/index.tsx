@@ -22,6 +22,10 @@ const LoadablePodcastEpisodePage = loadable(
   async () => await import('~/pages/PodcastEpisodePage')
 )
 
+const LoadableDetailsLayout = loadable(
+  async () => await import('~/pages/DetailsLayout')
+)
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -35,14 +39,18 @@ const router = createBrowserRouter([
         loader: loaderPodcastList(queryClient)
       },
       {
-        path: 'podcast/:podcastId',
-        element: <LoadablePodcastPage />,
-        loader: loaderPodcast(queryClient)
-      },
-      {
-        path: 'podcast/:podcastId/episode/:episodeId',
-        element: <LoadablePodcastEpisodePage />,
-        loader: loaderPodcast(queryClient)
+        element: <LoadableDetailsLayout />,
+        loader: loaderPodcast(queryClient),
+        children: [
+          {
+            path: 'podcast/:podcastId',
+            element: <LoadablePodcastPage />
+          },
+          {
+            path: 'podcast/:podcastId/episode/:episodeId',
+            element: <LoadablePodcastEpisodePage />
+          }
+        ]
       }
     ]
   }
