@@ -1,7 +1,7 @@
-import { memo, useMemo, type ReactElement } from 'react'
+import { memo, useMemo } from 'react'
 import { useNavigation, Link } from 'react-router-dom'
 
-function Topbar(): ReactElement {
+function Topbar(): React.ReactElement {
   const navigation = useNavigation()
 
   const PageStatusMemo = useMemo(

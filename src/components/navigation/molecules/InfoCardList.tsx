@@ -1,4 +1,3 @@
-import type { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 
 import InfoCard from '~/components/ui/molecules/InfoCard'
@@ -8,7 +7,7 @@ interface InfoCardListProps {
   data: InfoCardListDataProperties[] | []
 }
 
-function InfoCardList({ data }: InfoCardListProps): ReactElement {
+function InfoCardList({ data }: InfoCardListProps): React.ReactElement {
   return (
     <div className='mx-auto flex flex-wrap justify-center gap-x-3 gap-y-28 px-2'>
       {data.map(({ id, image, title, author }: InfoCardListDataProperties) => (

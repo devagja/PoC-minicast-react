@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion'
-import { type ReactNode, type ReactElement, memo } from 'react'
+import { memo } from 'react'
 
 import { MOTION_VARIANTS } from '~/constants'
 
 interface ContainerTransitionProps {
-  children: ReactNode
+  children: React.ReactNode
   [x: string]: any
 }
 function ContainerTransition({
   children,
   ...props
-}: ContainerTransitionProps): ReactElement {
+}: ContainerTransitionProps): React.ReactElement {
   return (
     <motion.div
       {...props}
