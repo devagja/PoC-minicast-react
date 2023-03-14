@@ -25,7 +25,7 @@ en cliente, sin refrescar completamente el documento principal en ningún moment
 
 La aplicación deberá tener un modo development en el que se sirvan los assets sin minimizar
 (pueden estar concatenados si se quiere) y otro modo production donde se deben servir los
-assets concatenados y minimizados. ❓
+assets concatenados y minimizados. ✅
 
 El objetivo final de la prueba es presentar un repositorio de código público (Github o Bitbucket)
 con la solución desarrollada. ✅ Es deseable que se vaya subiendo código a medida que se va
@@ -49,7 +49,7 @@ modos solicitados. ❌
   lo que no es necesario tener en cuenta las particularidades de otros navegadores ni de
   tamaños de pantalla pequeños. ✅
 - No será necesario realizar una gestión de errores de cara al usuario. ✅ Si se produce un
-  error, solo se deberá mostrar en la consola del navegador su mensaje y su traza. ❓
+  error, solo se deberá mostrar en la consola del navegador su mensaje y su traza. ✅
 
 ## Descripción de las vistas
 
@@ -110,7 +110,7 @@ URL: /podcast/{podcastId}/episode/{episodeId}
 - El título de la aplicación deberá actuar como enlace a la vista principal de la aplicación. ✅
 - Cada vez que se inicie una navegación en cliente se debe mostrar algún tipo de indicador
   visual en la esquina superior derecha de la página para reflejar que el proceso está en
-  marcha. Dicho indicador deberá desaparecer tras finalizar la transición a la nueva vista. ❌
+  marcha. Dicho indicador deberá desaparecer tras finalizar la transición a la nueva vista. ✅
 
 ## Recursos
 
