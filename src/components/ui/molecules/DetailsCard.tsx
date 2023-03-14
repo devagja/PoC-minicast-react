@@ -42,7 +42,7 @@ function DetailsCard({
       </div>
       {/* @ts-expect-error */}
       <LinkWrap.c {...LinkWrap.p}>
-        <div className='flex flex-col gap-1 px-2'>
+        <div className='flex flex-col gap-1 px-2 [&>*]:overflow-hidden [&>*]:text-ellipsis'>
           <span className='font-bold'>{title}</span>
           <span className='text-sm italic'>by {author}</span>
         </div>
@@ -51,7 +51,7 @@ function DetailsCard({
         <span className='text-sm font-bold'>Description</span>
         {descriptionInnerHTML !== '' ? (
           <span
-            className='text-sm italic transition-all'
+            className='text-sm italic transition-all [&>*]:overflow-hidden [&>*]:text-ellipsis'
             dangerouslySetInnerHTML={{ __html: descriptionInnerHTML }}
           />
         ) : (
