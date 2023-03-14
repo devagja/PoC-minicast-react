@@ -93,15 +93,15 @@ URL: /podcast/{podcastId}/episode/{episodeId}
 
 #### Requerimientos
 
-- Se debe mostrar la misma barra lateral que en la vista anterior.
+- Se debe mostrar la misma barra lateral que en la vista anterior. ✅
   - Tanto la imagen como el título del podcast y el autor deben ser enlaces a la vista con el
     detalle del podcast (se permite que estos componentes también tengan los mismos
-    enlaces en la vista anterior).
+    enlaces en la vista anterior). ✅
 - Se debe mostrar una sección principal donde se visualizará el título del podcast, su
   descripción y un reproductor de audio básico (nativo HTML5) para reproducir el
-  podcast.
+  podcast. ✅
   - Se deberá tener en cuenta que algunas descripciones de episodios contienen
-    HTML y este se debe mostrar interpretado (no escapado).
+    HTML y este se debe mostrar interpretado (no escapado). ✅
 
 ### Cabecera
 
