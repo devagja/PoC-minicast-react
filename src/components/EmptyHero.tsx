@@ -1,13 +1,8 @@
-import {
-  type ReactElement,
-  type ButtonHTMLAttributes,
-  useMemo,
-  type RefAttributes,
-  Fragment
-} from 'react'
+import { useMemo, Fragment } from 'react'
 import { Link, type LinkProps } from 'react-router-dom'
 
-interface ButtonProperties extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProperties
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
 }
 
@@ -15,7 +10,7 @@ interface EmptyHeroProps {
   title: string
   description: string
   button: ButtonProperties
-  link?: (LinkProps & RefAttributes<HTMLAnchorElement>) | null
+  link?: (LinkProps & React.RefAttributes<HTMLAnchorElement>) | null
 }
 
 function EmptyHero({
@@ -23,7 +18,7 @@ function EmptyHero({
   description,
   button,
   link
-}: EmptyHeroProps): ReactElement {
+}: EmptyHeroProps): React.ReactElement {
   const LinkWrap = useMemo(
     () => (link != null ? { c: Link, p: link } : { c: Fragment, p: null }),
     [link]

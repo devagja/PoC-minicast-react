@@ -1,8 +1,8 @@
+import loadable from '@loadable/component'
 import { useAtom } from 'jotai'
-import { type ReactElement, useEffect, useMemo, useCallback, memo } from 'react'
+import { useEffect, useMemo, useCallback, memo } from 'react'
 import { useForm } from 'react-hook-form'
 
-import EmptyHero from '~/components/EmptyHero'
 import PodcastListHeaderPage from '~/components/navigation/atom/PodcastListHeaderPage'
 import InfoCardList from '~/components/navigation/molecules/InfoCardList'
 import ContainerTransition from '~/components/routing/atoms/ContainerTransition'
@@ -10,14 +10,14 @@ import usePodcastList from '~/hooks/query/usePodcastList'
 import { filteredPodcastListAtom } from '~/state'
 import getListFilteredByValue from '~/utils/formatToUseInComponents/getListFilteredByValue'
 
-function PodcastListPage(): ReactElement {
+function PodcastListPage(): React.ReactElement {
   const { data: podcastList } = usePodcastList()
 
   const [filteredPodcastList, setFilteredPodcastList] = useAtom(
     filteredPodcastListAtom
   )
 
-  const { register, watch, setValue, getValues } = useForm({
+  const { register, watch, setValue } = useForm({
     defaultValues: {
       search: ''
     }
@@ -47,9 +47,7 @@ function PodcastListPage(): ReactElement {
   }, [watchSearch])
 
   const handleReset = useCallback((): void => {
-    if (getValues().search !== '') {
-      setValue('search', '')
-    }
+    setValue('search', '')
   }, [setValue])
 
   const PodcastListHeaderPageMemo = useMemo(
@@ -71,26 +69,31 @@ function PodcastListPage(): ReactElement {
     [filteredPodcastList]
   )
 
-  const EmptyHeroMemo = useMemo(
-    () =>
-      filteredPodcastList.length === 0 && (
-        <EmptyHero
-          title='Empty search'
-          description='You should consider cleaning the filter'
-          button={{
-            onClick: handleReset,
-            label: 'Clear Filter'
-          }}
-        />
-      ),
-    [filteredPodcastList, handleReset]
-  )
+  const EmptyHeroMemo = useMemo(() => {
+    const LoadableEmptyHero = loadable(
+      async () => await import('~/components/EmptyHero')
+    )
+    return (
+      <LoadableEmptyHero
+        title='Empty search'
+        description='You should consider cleaning the filter'
+        button={{
+          onClick: handleReset,
+          label: 'Clear Filter'
+        }}
+      />
+    )
+  }, [handleReset])
+
+  const ShowHeroMemo = useMemo(() => {
+    return filteredPodcastList.length === 0 ? EmptyHeroMemo : <></>
+  }, [EmptyHeroMemo, filteredPodcastList])
 
   return (
     <ContainerTransition className='container mx-auto flex w-full flex-col pb-7'>
       {PodcastListHeaderPageMemo}
       {InfoCardListMemo}
-      {EmptyHeroMemo}
+      {ShowHeroMemo}
     </ContainerTransition>
   )
 }

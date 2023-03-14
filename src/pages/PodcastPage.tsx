@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { memo, useCallback, useMemo, type ReactElement } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import ContainerTransition from '~/components/routing/atoms/ContainerTransition'
@@ -11,21 +11,21 @@ import usePodcastInfo from '~/hooks/query/usePodcastInfo'
 
 const intl = new Intl.DateTimeFormat('en-US')
 
-function PodcastPage(): ReactElement {
+function PodcastPage(): React.ReactElement {
   const nav = useNavigate()
-  const params = useParams<{
+  const { podcastId = '' } = useParams<{
     podcastId: string | undefined
   }>()
 
-  const { data: podcast } = usePodcast(params.podcastId ?? '')
+  const { data: podcast } = usePodcast(podcastId)
 
   const { data: podcastInfo } = usePodcastInfo(
-    params.podcastId ?? '',
+    podcastId,
     podcast?.feedUrl ?? ''
   )
 
   const handleSelected = useCallback(
-    (guid: string) => () => {
+    (guid: string) => {
       nav(`episode/${guid}`)
     },
     [nav]
@@ -39,62 +39,31 @@ function PodcastPage(): ReactElement {
   const DetailsCardMemo = useMemo(
     () => (
       <DetailsCard
-        image={{ src: podcast?.artworkUrl600, alt: podcast?.collectionName }}
-        title={podcast?.collectionName}
-        author={podcast?.artistName}
+        {...(podcast != null && {
+          title: podcast.collectionName,
+          author: podcast.artistName,
+          image: { src: podcast.artworkUrl600, alt: podcast.collectionName }
+        })}
         descriptionInnerHTML={podcastInfo?.description}
       />
     ),
     [podcast, podcastInfo]
   )
-  const mockDataTableMemo = useMemo(
-    () =>
-      ['0', '1', '2', '3', '4', '5'].map(key => (
-        <tr key={key}>
-          <td className='w-full max-w-[15rem] overflow-x-hidden text-ellipsis text-center lg:max-w-xs'>
-            <span className='loading btn-ghost btn-sm btn transition-all'></span>
-          </td>
-          <td className='text-center '>
-            <span className='loading btn-ghost btn-sm btn transition-all'></span>
-          </td>
-          <td className='text-center '>
-            <span className='loading btn-ghost btn-sm btn  transition-all'></span>
-          </td>
-        </tr>
-      )),
-    []
-  )
 
   const InfoTableMemo = useMemo(
     () => (
-      <InfoTable headers={['Title', 'Date', 'Duration']}>
-        <tbody>
-          {podcastInfo != null
-            ? podcastInfo.item.map(episode => (
-                <tr
-                  key={episode.title}
-                  title={episode.title}
-                  className='cursor-pointer'
-                  onClick={handleSelected(
-                    typeof episode.guid === 'object'
-                      ? episode.guid.text
-                      : episode.guid
-                  )}
-                >
-                  <td className='max-w-[15rem] overflow-x-hidden text-ellipsis lg:max-w-xs'>
-                    {episode.title}
-                  </td>
-                  <td>{intl.format(Date.parse(episode?.pubDate))}</td>
-                  <td>
-                    {dayjs.unix(episode.itunesDuration).format('HH:mm:ss')}
-                  </td>
-                </tr>
-              ))
-            : mockDataTableMemo}
-        </tbody>
-      </InfoTable>
+      <InfoTable
+        rows={podcastInfo?.item.map(episode => ({
+          guid:
+            typeof episode.guid === 'object' ? episode.guid.text : episode.guid,
+          title: episode.title,
+          date: intl.format(Date.parse(episode.pubDate)),
+          duration: dayjs.unix(episode.itunesDuration).format('HH:mm:ss')
+        }))}
+        onItemClick={handleSelected}
+      />
     ),
-    [podcastInfo, mockDataTableMemo]
+    [podcastInfo]
   )
 
   const PodcastEpisodesCountMemo = useMemo(

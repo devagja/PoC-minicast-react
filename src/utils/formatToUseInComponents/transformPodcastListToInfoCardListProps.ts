@@ -1,10 +1,8 @@
-import type { ImgHTMLAttributes } from 'react'
-
 import type { Entry } from '~/interfaces/PodcastList'
 
 export interface InfoCardListDataProperties {
   id: string
-  image: ImgHTMLAttributes<HTMLImageElement>
+  image: React.ImgHTMLAttributes<HTMLImageElement>
   title: string
   author: string
 }
