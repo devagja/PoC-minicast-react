@@ -24,8 +24,9 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'react-refresh'],
   rules: {
+    'react-refresh/only-export-components': 'warn',
     indent: 'off',
     '@typescript-eslint/promise-function-async': 'off',
     '@typescript-eslint/indent': 'off',

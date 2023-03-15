@@ -6,7 +6,7 @@ import DetailsCard from '~/components/molecules/DetailsCard'
 import usePodcast from '~/hooks/query/usePodcast'
 import usePodcastInfo from '~/hooks/query/usePodcastInfo'
 
-function DetailsLayout(): React.ReactElement {
+function _DetailsLayout(): React.ReactElement {
   const { podcastId = '', episodeId = '' } = useParams<{
     podcastId: string | undefined
     episodeId: string | undefined
@@ -42,4 +42,5 @@ function DetailsLayout(): React.ReactElement {
   )
 }
 
-export default memo(DetailsLayout)
+const DetailsLayout = memo(_DetailsLayout)
+export default DetailsLayout

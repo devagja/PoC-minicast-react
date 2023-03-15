@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react'
 import { useNavigation, Link } from 'react-router-dom'
 
-function Topbar(): React.ReactElement {
+function _Topbar(): React.ReactElement {
   const navigation = useNavigation()
 
   const PageStatusMemo = useMemo(
@@ -29,4 +29,5 @@ function Topbar(): React.ReactElement {
   )
 }
 
-export default memo(Topbar)
+const Topbar = memo(_Topbar)
+export default Topbar

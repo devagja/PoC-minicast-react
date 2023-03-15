@@ -10,7 +10,7 @@ import usePodcastList from '~/hooks/query/usePodcastList'
 import { filteredPodcastListAtom } from '~/state'
 import getListFilteredByValue from '~/utils/formatToUseInComponents/getListFilteredByValue'
 
-function PodcastListPage(): React.ReactElement {
+function _PodcastListPage(): React.ReactElement {
   const { data: podcastList } = usePodcastList()
 
   const [filteredPodcastList, setFilteredPodcastList] = useAtom(
@@ -98,4 +98,5 @@ function PodcastListPage(): React.ReactElement {
   )
 }
 
-export default memo(PodcastListPage)
+const PodcastListPage = memo(_PodcastListPage)
+export default PodcastListPage

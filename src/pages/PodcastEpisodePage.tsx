@@ -5,10 +5,10 @@ import { useOutletContext } from 'react-router-dom'
 
 import type { Channel, Item } from '~/interfaces/PodcastInfo'
 
-export const episodeSelectedAtom = atom<Item | null>(null)
-export const episodeNotFoundAtom = atom<boolean>(false)
+const episodeSelectedAtom = atom<Item | null>(null)
+const episodeNotFoundAtom = atom<boolean>(false)
 
-function PodcastEpisodePage(): React.ReactElement {
+function _PodcastEpisodePage(): React.ReactElement {
   const { podcastInfo, episodeId, podcastId } = useOutletContext<{
     podcastInfo: Channel | undefined
     episodeId: string
@@ -81,4 +81,5 @@ function PodcastEpisodePage(): React.ReactElement {
   )
 }
 
-export default memo(PodcastEpisodePage)
+const PodcastEpisodePage = memo(_PodcastEpisodePage)
+export default PodcastEpisodePage

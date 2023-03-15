@@ -4,7 +4,7 @@ interface PodcastEpisodesCountProps {
   count: number
 }
 
-function PodcastEpisodesCount({
+function _PodcastEpisodesCount({
   count
 }: PodcastEpisodesCountProps): React.ReactElement {
   return (
@@ -21,4 +21,5 @@ function PodcastEpisodesCount({
   )
 }
 
-export default memo(PodcastEpisodesCount)
+const PodcastEpisodesCount = memo(_PodcastEpisodesCount)
+export default PodcastEpisodesCount

@@ -6,7 +6,7 @@ interface BadgeProps {
   [x: string]: any
 }
 
-function Badge({
+function _Badge({
   children,
   className = '',
   ...props
@@ -27,4 +27,5 @@ function Badge({
   )
 }
 
-export default memo(Badge)
+const Badge = memo(_Badge)
+export default Badge

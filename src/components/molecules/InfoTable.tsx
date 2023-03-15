@@ -13,7 +13,7 @@ interface InfoTableProps {
   onItemClick: (guid: string) => void
 }
 
-function InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
+function _InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
   const mockDataTableMemo = useMemo(
     () =>
       ['0', '1', '2', '3', '4'].map(key => (
@@ -58,4 +58,5 @@ function InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
   )
 }
 
-export default memo(InfoTable)
+const InfoTable = memo(_InfoTable)
+export default InfoTable
