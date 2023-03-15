@@ -16,7 +16,7 @@ interface InfoTableProps {
 function InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
   const mockDataTableMemo = useMemo(
     () =>
-      ['0', '1', '2', '3', '4', '5'].map(key => (
+      ['0', '1', '2', '3', '4'].map(key => (
         <tr key={key}>
           <td className='w-full max-w-[15rem] overflow-x-hidden text-ellipsis text-center lg:max-w-xs'>
             <span className='loading btn-ghost btn-sm btn transition-all'></span>

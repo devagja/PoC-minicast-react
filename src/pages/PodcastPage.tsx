@@ -23,7 +23,7 @@ function PodcastPage(): React.ReactElement {
   )
 
   const podcastInfoLength = useMemo(
-    () => podcastInfo?.item.length ?? 0,
+    () => podcastInfo?.item.length ?? -1,
     [podcastInfo]
   )
 
@@ -35,7 +35,10 @@ function PodcastPage(): React.ReactElement {
             typeof episode.guid === 'object' ? episode.guid.text : episode.guid,
           title: episode.title,
           date: intl.format(Date.parse(episode.pubDate)),
-          duration: dayjs.unix(episode.itunesDuration).format('HH:mm:ss')
+          duration:
+            typeof episode.itunesDuration === 'number'
+              ? dayjs.unix(episode.itunesDuration).format('HH:mm:ss')
+              : episode.itunesDuration
         }))}
         onItemClick={handleSelected}
       />

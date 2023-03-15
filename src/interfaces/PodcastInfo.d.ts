@@ -58,7 +58,7 @@ export interface Item {
   description: string
   contentEncoded: string
   enclosure: Enclosure
-  itunesDuration: any
+  itunesDuration: string | number
   itunesExplicit: boolean
   itunesKeywords: string
   itunesSubtitle: string
