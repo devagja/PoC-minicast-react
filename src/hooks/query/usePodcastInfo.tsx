@@ -11,7 +11,7 @@ export const podcastInfoQuery = (
   podcastId: string,
   feedUrl: string
 ): UseQueryOptions<Channel, Error> => ({
-  queryKey: ['podcastinfo', podcastId],
+  queryKey: ['podcastinfo', podcastId, feedUrl],
   queryFn: async () => await getPodcastInfo(feedUrl)
 })
 
