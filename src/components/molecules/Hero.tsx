@@ -13,7 +13,7 @@ interface EmptyHeroProps {
   link?: (LinkProps & React.RefAttributes<HTMLAnchorElement>) | null
 }
 
-function EmptyHero({
+function Hero({
   title,
   description,
   button,
@@ -59,4 +59,4 @@ function EmptyHero({
   )
 }
 
-export default EmptyHero
+export default Hero
