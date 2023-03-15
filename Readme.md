@@ -8,6 +8,11 @@
 <img src="https://jose-aguilar.vercel.app/assets/images/perezozo.webp"  width="180">
 ](https://jose-aguilar.vercel.app)
 
+## Como usar el proyecto
+Desarrollo: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run dev -> Se levantará un servidor de desarrollo http://localhost:5174/
+Producción: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run build -> npm run preview -> Se levantará un servidor de producción http://localhost:4174/
+
+
 ## Resumen
 
 Esta prueba consiste en la creación de una mini-aplicación para escuchar podcasts
@@ -34,7 +39,7 @@ con la solución desarrollada. ✅ Es deseable que se vaya subiendo código a me
 avanzando en las diferentes secciones del proyecto (utilizando tags para dejar marcas de cada
 paso relevante) para poder evaluar la evolución de la implementación. ✅ En el repositorio deberá
 existir un archivo nombrado README donde se explicará cómo ejecutar la aplicación en ambos
-modos solicitados. ❌
+modos solicitados. ✅
 
 ### Restricciones
 
