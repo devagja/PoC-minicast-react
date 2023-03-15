@@ -1,8 +1,8 @@
 import { memo, useMemo } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 
-import ContainerTransition from '~/components/routing/atoms/ContainerTransition'
-import DetailsCard from '~/components/ui/molecules/DetailsCard'
+import ContainerTransition from '~/components/atoms/ContainerTransition'
+import DetailsCard from '~/components/molecules/DetailsCard'
 import usePodcast from '~/hooks/query/usePodcast'
 import usePodcastInfo from '~/hooks/query/usePodcastInfo'
 

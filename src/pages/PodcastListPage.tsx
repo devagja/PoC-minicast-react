@@ -3,9 +3,9 @@ import { useAtom } from 'jotai'
 import { useEffect, useMemo, useCallback, memo } from 'react'
 import { useForm } from 'react-hook-form'
 
-import PodcastListHeaderPage from '~/components/navigation/atom/PodcastListHeaderPage'
-import InfoCardList from '~/components/navigation/molecules/InfoCardList'
-import ContainerTransition from '~/components/routing/atoms/ContainerTransition'
+import ContainerTransition from '~/components/atoms/ContainerTransition'
+import PodcastListHeaderPage from '~/components/molecules/PodcastListHeaderPage'
+import InfoCardList from '~/components/organisms/InfoCardList'
 import usePodcastList from '~/hooks/query/usePodcastList'
 import { filteredPodcastListAtom } from '~/state'
 import getListFilteredByValue from '~/utils/formatToUseInComponents/getListFilteredByValue'
@@ -71,7 +71,7 @@ function PodcastListPage(): React.ReactElement {
 
   const EmptyHeroMemo = useMemo(() => {
     const LoadableEmptyHero = loadable(
-      async () => await import('~/components/EmptyHero')
+      async () => await import('~/components/molecules/EmptyHero')
     )
     return (
       <LoadableEmptyHero

@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import Topbar from '~/components/navigation/Topbar'
+import Topbar from '~/components/organisms/Topbar'
 
 function Layout(): React.ReactElement {
   return (

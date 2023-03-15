@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import InfoCard from '~/components/ui/molecules/InfoCard'
+import InfoCard from '~/components/molecules/InfoCard'
 import type { InfoCardListDataProperties } from '~/utils/formatToUseInComponents/transformPodcastListToInfoCardListProps'
 
 interface InfoCardListProps {

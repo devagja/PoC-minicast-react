@@ -53,7 +53,7 @@ function PodcastEpisodePage(): React.ReactElement {
 
   const EmptyHeroMemo = useMemo(() => {
     const LoadableEmptyHero = loadable(
-      async () => await import('~/components/EmptyHero')
+      async () => await import('~/components/molecules/EmptyHero')
     )
     return (
       <LoadableEmptyHero

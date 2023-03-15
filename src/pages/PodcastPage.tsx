@@ -2,8 +2,8 @@ import dayjs from 'dayjs'
 import { memo, useCallback, useMemo } from 'react'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 
-import PodcastEpisodesCount from '~/components/ui/atoms/PodcastEpisodesCount'
-import InfoTable from '~/components/ui/molecules/InfoTable'
+import PodcastEpisodesCount from '~/components/atoms/PodcastEpisodesCount'
+import InfoTable from '~/components/molecules/InfoTable'
 import type { Channel } from '~/interfaces/PodcastInfo'
 
 const intl = new Intl.DateTimeFormat('en-US')
