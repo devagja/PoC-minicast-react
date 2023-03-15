@@ -12,6 +12,13 @@
 Desarrollo: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run dev -> Se levantará un servidor de desarrollo http://localhost:5174/
 Producción: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run build -> npm run preview -> Se levantará un servidor de producción http://localhost:4174/
 
+#### Nota
+https://developer.chrome.com/docs/extensions/reference/webRequest/
+
+Los enlaces de Feed para consultar los episodios tienen la siguiente cabecera que imposibilita toda forma de cachear el recurso
+
+*cache-control: max-age=0, private, must-revalidate*
+
 
 ## Resumen
 
@@ -70,7 +77,7 @@ URL: /
   final del documento). ✅
 - Una vez obtenido el listado desde el servicio externo por primera vez se deberá almacenar
   en cliente de manera que solo se vuelva a solicitar si ha pasado más de un día desde la
-  última vez que se solicitó. ❌
+  última vez que se solicitó. ✅
 - El usuario podrá filtrar los podcasts mostrados introduciendo una cadena de texto que
   tendrá en cuenta tanto el título de los podcasts así como los nombres de sus autores. ✅
 - El filtrado deberá ser inmediato de manera que reaccione a medida que el usuario vaya
@@ -90,7 +97,7 @@ URL: /podcast/{podcastId}
   de publicación y duración. ✅
 - Una vez obtenido el detalle de un podcast desde el servicio externo por primera vez, se
   deberá almacenar en cliente de manera que solo se vuelva a solicitar si ha pasado un día
-  desde la última vez que se solicitó. ❌
+  desde la última vez que se solicitó. ✅
 - Al pulsar sobre el título de un episodio se deberá navegar a la vista con el detalle del
   mismo. ✅
 
