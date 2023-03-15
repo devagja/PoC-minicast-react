@@ -5,7 +5,7 @@ interface InfoTableProps {
   children: React.ReactNode
 }
 
-function Table({ headers, children }: InfoTableProps): React.ReactElement {
+function _Table({ headers, children }: InfoTableProps): React.ReactElement {
   const HeadersMemo = useMemo(
     () => (
       <tr>
@@ -27,4 +27,5 @@ function Table({ headers, children }: InfoTableProps): React.ReactElement {
   )
 }
 
-export default memo(Table)
+const Table = memo(_Table)
+export default Table

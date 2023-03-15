@@ -7,7 +7,7 @@ interface ContainerTransitionProps {
   children: React.ReactNode
   [x: string]: any
 }
-function ContainerTransition({
+function _ContainerTransition({
   children,
   ...props
 }: ContainerTransitionProps): React.ReactElement {
@@ -25,4 +25,5 @@ function ContainerTransition({
   )
 }
 
-export default memo(ContainerTransition)
+const ContainerTransition = memo(_ContainerTransition)
+export default ContainerTransition

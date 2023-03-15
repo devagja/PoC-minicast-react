@@ -9,16 +9,17 @@
 ](https://jose-aguilar.vercel.app)
 
 ## Como usar el proyecto
+
 Desarrollo: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run dev -> Se levantará un servidor de desarrollo http://localhost:5174/
 Producción: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run build -> npm run preview -> Se levantará un servidor de producción http://localhost:4174/
 
 #### Nota
+
 https://developer.chrome.com/docs/extensions/reference/webRequest/
 
 Los enlaces de Feed para consultar los episodios tienen la siguiente cabecera que imposibilita toda forma de cachear el recurso
 
-*cache-control: max-age=0, private, must-revalidate*
-
+_cache-control: max-age=0, private, must-revalidate_
 
 ## Resumen
 

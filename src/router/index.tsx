@@ -5,6 +5,7 @@ import loaderPodcast from '~/loaders/loaderPodcast'
 import loaderPodcastList from '~/loaders/loaderPodcastList'
 import queryClient from '~/queryClient'
 
+/* eslint-disable react-refresh/only-export-components */
 const LoadableRedirect = loadable(
   async () => await import('~/components/atoms/Redirect')
 )
@@ -27,6 +28,7 @@ const LoadablePodcastEpisodePage = loadable(
 const LoadableDetailsLayout = loadable(
   async () => await import('~/components/templates/DetailsLayout')
 )
+/* eslint-enable react-refresh/only-export-components */
 
 const router = createBrowserRouter([
   {
