@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 
-import Table from './Table'
+import Table from '../atoms/Table'
 
 interface RowAttrs {
   title: string

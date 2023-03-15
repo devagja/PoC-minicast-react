@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 
-import Badge from '~/components/ui/atoms/Badge'
+import Badge from '~/components/atoms/Badge'
 import SearchInput, {
   type SearchInputProps
-} from '~/components/ui/atoms/SearchInput'
+} from '~/components/atoms/SearchInput'
 
 interface PodcastListHeaderProps {
   count: number
