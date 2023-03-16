@@ -10,8 +10,8 @@
 
 ## Como usar el proyecto
 
-Desarrollo: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run dev -> Se levantará un servidor de desarrollo http://localhost:5174/
-Producción: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run build -> npm run preview -> Se levantará un servidor de producción http://localhost:4174/
+- Desarrollo: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run dev -> Se levantará un servidor de desarrollo http://localhost:5174/
+- Producción: instalar node y npm -> acceder al proyecto via comandos -> npm install -> npm run build -> npm run preview -> Se levantará un servidor de producción http://localhost:4174/
 
 #### Nota
 
