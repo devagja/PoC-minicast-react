@@ -1,11 +1,15 @@
 import { memo, useMemo } from 'react'
 
-interface InfoTableProps {
+interface InfoTableProps extends React.HTMLAttributes<HTMLDivElement> {
   headers: string[]
   children: React.ReactNode
 }
 
-function _Table({ headers, children }: InfoTableProps): React.ReactElement {
+const Table = memo(function _({
+  headers,
+  children,
+  ...props
+}: InfoTableProps): React.ReactElement {
   const HeadersMemo = useMemo(
     () => (
       <tr>
@@ -18,14 +22,13 @@ function _Table({ headers, children }: InfoTableProps): React.ReactElement {
   )
 
   return (
-    <div className='overflow-x-auto'>
+    <div {...props} className='overflow-x-auto'>
       <table className='table-zebra table w-full'>
         <thead>{HeadersMemo}</thead>
         {children}
       </table>
     </div>
   )
-}
+})
 
-const Table = memo(_Table)
 export default Table
