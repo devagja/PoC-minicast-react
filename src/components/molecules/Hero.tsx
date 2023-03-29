@@ -19,7 +19,7 @@ function Hero({
   button,
   link
 }: EmptyHeroProps): React.ReactElement {
-  const LinkWrap = useMemo(
+  const LinkWrap: any = useMemo(
     () => (link != null ? { c: Link, p: link } : { c: Fragment, p: null }),
     [link]
   )
@@ -37,7 +37,6 @@ function Hero({
   const ButtonMemo = useMemo(() => {
     const { label, ...buttonAttr } = button
     return (
-      // @ts-expect-error
       <LinkWrap.c {...LinkWrap.p}>
         <button {...buttonAttr} className='btn-primary btn'>
           {label}
