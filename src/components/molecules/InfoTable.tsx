@@ -10,10 +10,13 @@ interface RowAttrs {
 }
 interface InfoTableProps {
   rows?: RowAttrs[]
-  onItemClick: (guid: string) => void
+  onItemClick?: (guid: string) => void
 }
 
-function _InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
+const InfoTable = memo(function _({
+  rows,
+  onItemClick = guid => {}
+}: InfoTableProps): React.ReactElement {
   const mockDataTableMemo = useMemo(
     () =>
       ['0', '1', '2', '3', '4'].map(key => (
@@ -56,7 +59,6 @@ function _InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
       </tbody>
     </Table>
   )
-}
+})
 
-const InfoTable = memo(_InfoTable)
 export default InfoTable
