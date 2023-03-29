@@ -1,11 +1,14 @@
 import { Fragment, useMemo } from 'react'
 import { Link, type LinkProps } from 'react-router-dom'
+import DOMPurify from 'dompurify'
 
 interface InfoCardProps {
   image?: React.ImgHTMLAttributes<HTMLImageElement>
   title?: string
   author?: string
-  descriptionInnerHTML?: string
+  children?: React.ReactNode
+  isChildDangerousHTML?: boolean
+  isLoading?: boolean
   link?: (LinkProps & React.RefAttributes<HTMLAnchorElement>) | null
 }
 
@@ -13,10 +16,12 @@ function DetailsCard({
   image,
   title = '',
   author = '',
-  descriptionInnerHTML = '',
+  children = '',
+  isChildDangerousHTML = false,
+  isLoading = false,
   link
 }: InfoCardProps): React.ReactElement {
-  const LinkWrap = useMemo(
+  const LinkWrap: any = useMemo(
     () =>
       link != null
         ? {
@@ -47,38 +52,43 @@ function DetailsCard({
     []
   )
 
-  const DescriptionMemo = useMemo(
-    () =>
-      descriptionInnerHTML !== '' ? (
-        <span
-          className='text-sm italic transition-all [&>*]:overflow-hidden [&>*]:text-ellipsis'
-          dangerouslySetInnerHTML={{ __html: descriptionInnerHTML }}
-        />
-      ) : (
-        LoadingMemo
-      ),
-    [descriptionInnerHTML, LoadingMemo]
-  )
+  const ContentMemo = useMemo(() => {
+    if (isLoading) {
+      return LoadingMemo
+    }
+    if (!children) {
+      return
+    }
+    if (isChildDangerousHTML && typeof children === 'string') {
+      return (
+        <div className='flex flex-col gap-1'>
+          <span className='text-sm font-bold'>Description</span>
+          <span
+            className='text-sm italic transition-all [&>*]:overflow-hidden [&>*]:text-ellipsis'
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(children)
+            }}
+          />
+        </div>
+      )
+    }
+    return children
+  }, [isLoading, children, LoadingMemo, isChildDangerousHTML])
 
   return (
     <div className='top-24 flex h-fit w-full flex-col gap-11 border border-base-200 bg-base-100 px-3 pt-5 pb-16 drop-shadow-lg md:sticky md:max-w-[288px]'>
       <div className='avatar'>
         <div className='mx-auto w-44 rounded'>
-          {/* @ts-expect-error */}
           <LinkWrap.c {...LinkWrap.p}>{ImageMemo}</LinkWrap.c>
         </div>
       </div>
-      {/* @ts-expect-error */}
       <LinkWrap.c {...LinkWrap.p}>
         <div className='flex flex-col gap-1 px-2 [&>*]:overflow-hidden [&>*]:text-ellipsis'>
           {TitleMemo}
           {AuthorMemo}
         </div>
       </LinkWrap.c>
-      <div className='flex flex-col gap-1'>
-        <span className='text-sm font-bold'>Description</span>
-        {DescriptionMemo}
-      </div>
+      {ContentMemo}
     </div>
   )
 }

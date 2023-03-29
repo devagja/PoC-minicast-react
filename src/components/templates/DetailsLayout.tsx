@@ -6,7 +6,7 @@ import DetailsCard from '~/components/molecules/DetailsCard'
 import usePodcast from '~/hooks/query/usePodcast'
 import usePodcastInfo from '~/hooks/query/usePodcastInfo'
 
-function _DetailsLayout(): React.ReactElement {
+const DetailsLayout = memo(function _(): React.ReactElement {
   const { podcastId = '', episodeId = '' } = useParams<{
     podcastId: string | undefined
     episodeId: string | undefined
@@ -14,7 +14,7 @@ function _DetailsLayout(): React.ReactElement {
 
   const { data: podcast } = usePodcast(podcastId)
 
-  const { data: podcastInfo } = usePodcastInfo(
+  const { data: podcastInfo, isLoading } = usePodcastInfo(
     podcastId,
     podcast?.feedUrl ?? ''
   )
@@ -28,10 +28,13 @@ function _DetailsLayout(): React.ReactElement {
           image: { src: podcast.artworkUrl600, alt: podcast.collectionName }
         })}
         {...(episodeId !== '' && { link: { to: `/podcast/${podcastId}` } })}
-        descriptionInnerHTML={podcastInfo?.description}
-      />
+        isChildDangerousHTML
+        isLoading={isLoading}
+      >
+        {podcastInfo?.description}
+      </DetailsCard>
     ),
-    [podcast, podcastInfo, episodeId]
+    [podcast, podcastInfo, episodeId, isLoading]
   )
 
   return (
@@ -40,7 +43,6 @@ function _DetailsLayout(): React.ReactElement {
       <Outlet context={{ podcast, podcastInfo, podcastId, episodeId }} />
     </ContainerTransition>
   )
-}
+})
 
-const DetailsLayout = memo(_DetailsLayout)
 export default DetailsLayout
