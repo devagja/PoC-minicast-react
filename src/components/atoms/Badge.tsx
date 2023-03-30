@@ -1,12 +1,11 @@
 import { memo, useMemo } from 'react'
 
-interface BadgeProps {
+interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   className?: string
-  [x: string]: any
 }
 
-function _Badge({
+const Badge = memo(function _({
   children,
   className = '',
   ...props
@@ -25,7 +24,6 @@ function _Badge({
       {children}
     </div>
   )
-}
+})
 
-const Badge = memo(_Badge)
 export default Badge

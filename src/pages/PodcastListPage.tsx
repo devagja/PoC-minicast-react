@@ -1,27 +1,23 @@
 import loadable from '@loadable/component'
 import { useAtom } from 'jotai'
 import { useEffect, useMemo, useCallback, memo } from 'react'
-import { useForm } from 'react-hook-form'
 
 import ContainerTransition from '~/components/atoms/ContainerTransition'
 import PodcastListHeaderPage from '~/components/molecules/PodcastListHeaderPage'
 import InfoCardList from '~/components/organisms/InfoCardList'
 import usePodcastList from '~/hooks/query/usePodcastList'
+import useSearchForm from '~/hooks/rhf/useSearchForm'
 import { filteredPodcastListAtom } from '~/state'
 import getListFilteredByValue from '~/utils/formatToUseInComponents/getListFilteredByValue'
 
-function _PodcastListPage(): React.ReactElement {
+const PodcastListPage = memo(function _(): React.ReactElement {
   const { data: podcastList } = usePodcastList()
 
   const [filteredPodcastList, setFilteredPodcastList] = useAtom(
     filteredPodcastListAtom
   )
 
-  const { register, watch, setValue } = useForm({
-    defaultValues: {
-      search: ''
-    }
-  })
+  const { register, watch, setValue } = useSearchForm()
 
   const watchSearch = watch('search')
 
@@ -55,6 +51,8 @@ function _PodcastListPage(): React.ReactElement {
       <PodcastListHeaderPage
         count={filteredPodcastList.length}
         input={{
+          role: 'search',
+          'aria-label': 'podcast filter input',
           ...register('search'),
           placeholder: 'Search...',
           onReset: handleReset
@@ -96,7 +94,6 @@ function _PodcastListPage(): React.ReactElement {
       {ShowHeroMemo}
     </ContainerTransition>
   )
-}
+})
 
-const PodcastListPage = memo(_PodcastListPage)
 export default PodcastListPage

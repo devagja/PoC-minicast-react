@@ -1,9 +1,8 @@
 import { memo } from 'react'
 import { Navigate } from 'react-router-dom'
 
-const _Redirect = (): React.ReactElement => {
+const Redirect = memo(function _(): React.ReactElement {
   return <Navigate to='/' replace />
-}
+})
 
-const Redirect = memo(_Redirect)
 export default Redirect

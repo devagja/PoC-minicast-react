@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion'
+import { type HTMLMotionProps, motion } from 'framer-motion'
 import { memo } from 'react'
 
 import { MOTION_VARIANTS } from '~/constants'
 
-interface ContainerTransitionProps {
+interface ContainerTransitionProps extends HTMLMotionProps<'div'> {
   children: React.ReactNode
-  [x: string]: any
 }
-function _ContainerTransition({
+
+const ContainerTransition = memo(function _({
   children,
   ...props
 }: ContainerTransitionProps): React.ReactElement {
@@ -23,7 +23,6 @@ function _ContainerTransition({
       {children}
     </motion.div>
   )
-}
+})
 
-const ContainerTransition = memo(_ContainerTransition)
 export default ContainerTransition

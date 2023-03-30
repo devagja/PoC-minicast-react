@@ -1,19 +1,12 @@
 import { memo, useMemo } from 'react'
 import { useNavigation, Link } from 'react-router-dom'
+import Status from '../atoms/Status'
 
-function _Topbar(): React.ReactElement {
+const Topbar = memo(function _(): React.ReactElement {
   const navigation = useNavigation()
 
   const PageStatusMemo = useMemo(
-    () => (
-      <div className='fixed bottom-0 right-0 z-10 sm:top-0 sm:bottom-auto'>
-        {navigation.state !== 'loading' ? (
-          <span className='btn-ghost  btn-square btn'> ✅</span>
-        ) : (
-          <span className='loading btn-ghost  btn-square btn'></span>
-        )}
-      </div>
-    ),
+    () => <Status state={navigation.state} />,
     [navigation.state]
   )
 
@@ -27,7 +20,6 @@ function _Topbar(): React.ReactElement {
       {PageStatusMemo}
     </div>
   )
-}
+})
 
-const Topbar = memo(_Topbar)
 export default Topbar

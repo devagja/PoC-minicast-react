@@ -10,10 +10,13 @@ interface RowAttrs {
 }
 interface InfoTableProps {
   rows?: RowAttrs[]
-  onItemClick: (guid: string) => void
+  onItemClick?: (guid: string) => void
 }
 
-function _InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
+const InfoTable = memo(function _({
+  rows,
+  onItemClick = () => {}
+}: InfoTableProps): React.ReactElement {
   const mockDataTableMemo = useMemo(
     () =>
       ['0', '1', '2', '3', '4'].map(key => (
@@ -25,7 +28,7 @@ function _InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
             <span className='loading btn-ghost btn-sm btn transition-all'></span>
           </td>
           <td className='text-center '>
-            <span className='loading btn-ghost btn-sm btn  transition-all'></span>
+            <span className='loading btn-ghost btn-sm btn transition-all'></span>
           </td>
         </tr>
       )),
@@ -34,29 +37,26 @@ function _InfoTable({ rows, onItemClick }: InfoTableProps): React.ReactElement {
 
   return (
     <Table headers={['Title', 'Date', 'Duration']}>
-      <tbody>
-        {rows != null
-          ? rows.map(({ title, date, duration, guid }) => (
-              <tr
-                key={title}
-                title={title}
-                className='cursor-pointer'
-                onClick={() => {
-                  onItemClick(guid)
-                }}
-              >
-                <td className='max-w-[15rem] overflow-x-hidden text-ellipsis lg:max-w-xs'>
-                  {title}
-                </td>
-                <td>{date}</td>
-                <td>{duration}</td>
-              </tr>
-            ))
-          : mockDataTableMemo}
-      </tbody>
+      {rows != null
+        ? rows.map(({ title, date, duration, guid }) => (
+            <tr
+              key={title}
+              title={title}
+              className='cursor-pointer'
+              onClick={() => {
+                onItemClick(guid)
+              }}
+            >
+              <td className='max-w-[15rem] overflow-x-hidden text-ellipsis lg:max-w-xs'>
+                {title}
+              </td>
+              <td>{date}</td>
+              <td>{duration}</td>
+            </tr>
+          ))
+        : mockDataTableMemo}
     </Table>
   )
-}
+})
 
-const InfoTable = memo(_InfoTable)
 export default InfoTable

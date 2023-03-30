@@ -1,25 +1,37 @@
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 
-interface PodcastEpisodesCountProps {
+interface PodcastEpisodesCountProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   count: number
 }
 
-function _PodcastEpisodesCount({
-  count
+const PodcastEpisodesCount = memo(function _({
+  count,
+  className,
+  ...props
 }: PodcastEpisodesCountProps): React.ReactElement {
+  //TODO: make component
+  const loader = useMemo(
+    () => <span className='loading btn-ghost btn-sm btn transition-all'></span>,
+    []
+  )
+
+  const classes = useMemo(
+    () =>
+      [
+        'w-full border border-base-200 bg-base-100 px-4 py-3 drop-shadow-lg',
+        className
+      ].join(' '),
+    [className]
+  )
+
   return (
-    <div className='w-full border border-base-200 bg-base-100 px-4 py-3 drop-shadow-lg  '>
-      {count !== -1 ? (
-        <span className=' text-xl font-bold'>Episodes: {count}</span>
-      ) : (
-        <span className=' text-xl font-bold'>
-          Episodes:
-          <span className='loading btn-ghost btn-sm btn transition-all'></span>
-        </span>
-      )}
+    <div {...props} className={classes}>
+      <span className='text-xl font-bold'>
+        <>Episodes: {count !== -1 ? count : loader}</>
+      </span>
     </div>
   )
-}
+})
 
-const PodcastEpisodesCount = memo(_PodcastEpisodesCount)
 export default PodcastEpisodesCount
