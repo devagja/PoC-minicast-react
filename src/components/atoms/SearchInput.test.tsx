@@ -8,7 +8,12 @@ describe('SearchInput Component', () => {
 
   test('check render works', () => {
     const { getByRole, container } = render(
-      <SearchInput role='search' aria-label='input' value='test' type='text' />
+      <SearchInput
+        role='search'
+        aria-label='input'
+        defaultValue='test'
+        type='text'
+      />
     )
 
     expect(getByRole('search', { name: 'input' })).toHaveProperty(
@@ -25,7 +30,7 @@ describe('SearchInput Component', () => {
       <SearchInput
         role='search'
         aria-label='input'
-        value='test'
+        defaultValue='test'
         type='text'
         onReset={mockHandler}
       />
