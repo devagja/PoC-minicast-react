@@ -15,7 +15,7 @@ interface InfoTableProps {
 
 const InfoTable = memo(function _({
   rows,
-  onItemClick = guid => {}
+  onItemClick = () => {}
 }: InfoTableProps): React.ReactElement {
   const mockDataTableMemo = useMemo(
     () =>
@@ -28,7 +28,7 @@ const InfoTable = memo(function _({
             <span className='loading btn-ghost btn-sm btn transition-all'></span>
           </td>
           <td className='text-center '>
-            <span className='loading btn-ghost btn-sm btn  transition-all'></span>
+            <span className='loading btn-ghost btn-sm btn transition-all'></span>
           </td>
         </tr>
       )),
@@ -37,26 +37,24 @@ const InfoTable = memo(function _({
 
   return (
     <Table headers={['Title', 'Date', 'Duration']}>
-      <tbody>
-        {rows != null
-          ? rows.map(({ title, date, duration, guid }) => (
-              <tr
-                key={title}
-                title={title}
-                className='cursor-pointer'
-                onClick={() => {
-                  onItemClick(guid)
-                }}
-              >
-                <td className='max-w-[15rem] overflow-x-hidden text-ellipsis lg:max-w-xs'>
-                  {title}
-                </td>
-                <td>{date}</td>
-                <td>{duration}</td>
-              </tr>
-            ))
-          : mockDataTableMemo}
-      </tbody>
+      {rows != null
+        ? rows.map(({ title, date, duration, guid }) => (
+            <tr
+              key={title}
+              title={title}
+              className='cursor-pointer'
+              onClick={() => {
+                onItemClick(guid)
+              }}
+            >
+              <td className='max-w-[15rem] overflow-x-hidden text-ellipsis lg:max-w-xs'>
+                {title}
+              </td>
+              <td>{date}</td>
+              <td>{duration}</td>
+            </tr>
+          ))
+        : mockDataTableMemo}
     </Table>
   )
 })

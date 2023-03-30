@@ -7,7 +7,13 @@ describe('Table Component', () => {
   afterEach(cleanup)
 
   test('check default render works', () => {
-    const { getByText } = render(<Table headers={['test']}>children</Table>)
+    const { getByText } = render(
+      <Table headers={['test']}>
+        <tr>
+          <td>children</td>
+        </tr>
+      </Table>
+    )
 
     expect(getByText(/test/i)).toBeDefined()
     expect(getByText(/children/i)).toBeDefined()

@@ -3,7 +3,7 @@ import { afterEach, describe, expect, test, vi } from 'vitest'
 
 import InfoTable from './InfoTable'
 
-describe('InfoCard Component', () => {
+describe('InfoTable Component', () => {
   afterEach(cleanup)
   test('check default render works', () => {
     const { container, getByText } = render(<InfoTable />)
@@ -12,7 +12,7 @@ describe('InfoCard Component', () => {
     expect(container.getElementsByClassName('loading')).toBeDefined()
   })
 
-  test('check default render works', () => {
+  test('check rows render works', () => {
     const { getByText } = render(
       <InfoTable
         rows={[

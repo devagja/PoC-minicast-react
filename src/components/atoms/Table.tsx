@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react'
 
 interface InfoTableProps extends React.HTMLAttributes<HTMLDivElement> {
   headers: string[]
-  children: React.ReactNode
+  children: React.ReactElement | React.ReactElement[]
 }
 
 const Table = memo(function _({
@@ -25,7 +25,7 @@ const Table = memo(function _({
     <div {...props} className='overflow-x-auto'>
       <table className='table-zebra table w-full'>
         <thead>{HeadersMemo}</thead>
-        {children}
+        <tbody>{children}</tbody>
       </table>
     </div>
   )
