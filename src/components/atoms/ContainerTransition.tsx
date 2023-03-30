@@ -1,8 +1,4 @@
-import {
-  type ForwardRefComponent,
-  type HTMLMotionProps,
-  motion
-} from 'framer-motion'
+import { type HTMLMotionProps, motion } from 'framer-motion'
 import { memo } from 'react'
 
 import { MOTION_VARIANTS } from '~/constants'

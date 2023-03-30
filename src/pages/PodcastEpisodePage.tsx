@@ -2,13 +2,14 @@ import loadable from '@loadable/component'
 import { atom, useAtom } from 'jotai'
 import { memo, useEffect, useMemo } from 'react'
 import { useOutletContext } from 'react-router-dom'
+import DOMPurify from 'dompurify'
 
 import type { Channel, Item } from '~/interfaces/PodcastInfo'
 
 const episodeSelectedAtom = atom<Item | null>(null)
 const episodeNotFoundAtom = atom<boolean>(false)
 
-function _PodcastEpisodePage(): React.ReactElement {
+const PodcastEpisodePage = memo(function _(): React.ReactElement {
   const { podcastInfo, episodeId, podcastId } = useOutletContext<{
     podcastInfo: Channel | undefined
     episodeId: string
@@ -42,7 +43,9 @@ function _PodcastEpisodePage(): React.ReactElement {
         </span>
         <div
           className='flex flex-col gap-2 [&>*]:overflow-hidden [&>*]:text-ellipsis'
-          dangerouslySetInnerHTML={{ __html: episode.description }}
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(episode.description)
+          }}
         ></div>
         <audio className='w-full' src={episode.enclosure.url} controls></audio>
       </>
@@ -79,7 +82,6 @@ function _PodcastEpisodePage(): React.ReactElement {
       {ContentFoundRenderMemo}
     </div>
   )
-}
+})
 
-const PodcastEpisodePage = memo(_PodcastEpisodePage)
 export default PodcastEpisodePage

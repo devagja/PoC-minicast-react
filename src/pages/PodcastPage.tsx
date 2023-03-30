@@ -8,7 +8,7 @@ import type { Channel } from '~/interfaces/PodcastInfo'
 
 const intl = new Intl.DateTimeFormat('en-US')
 
-function _PodcastPage(): React.ReactElement {
+const PodcastPage = memo(function _(): React.ReactElement {
   const { podcastInfo } = useOutletContext<{
     podcastInfo: Channel | undefined
   }>()
@@ -59,7 +59,6 @@ function _PodcastPage(): React.ReactElement {
       </div>
     </div>
   )
-}
+})
 
-const PodcastPage = memo(_PodcastPage)
 export default PodcastPage
