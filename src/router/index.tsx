@@ -6,9 +6,8 @@ import loaderPodcastList from '~/loaders/loaderPodcastList'
 import queryClient from '~/queryClient'
 
 /* eslint-disable react-refresh/only-export-components */
-const LoadableRedirect = loadable(
-  async () => await import('~/components/atoms/Redirect')
-)
+const LoadableRedirect = loadable(async () => await import('./Redirect'))
+
 const LoadableLayout = loadable(
   async () => await import('~/components/templates/Layout')
 )
